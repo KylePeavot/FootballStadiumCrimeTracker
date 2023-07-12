@@ -9,7 +9,16 @@ describe('Stadium Service', function () {
             const stadiums = await stadiumService.getAllStadiums();
 
             //Then
-            expect(stadiums).toStrictEqual([]);
+            const theArsenalStadium = stadiums.find((stadium) => stadium.id === 57);
+            expect(theArsenalStadium).toStrictEqual(
+                {
+                    id: 57,
+                    name: 'Emirates Stadium',
+                    postcode: 'N5 1BU',
+                    fullAddress: '75 Drayton Park London N5 1BU',
+                    crestUrl: 'https://crests.football-data.org/57.png',
+                },
+            );
         });
     });
 });
