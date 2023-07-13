@@ -29,7 +29,7 @@ describe('CrimeDataService', function () {
                     "dateOfCrime": new Date('2023-05'),
                     "prettyCategory": "Burglary",
                 },
-            ])
+            ]);
         });
     });
 });
