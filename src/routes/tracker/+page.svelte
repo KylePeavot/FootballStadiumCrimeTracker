@@ -10,13 +10,10 @@
 
     let crimeDataPromise: Promise<CrimeData[]> = Promise.resolve([]);
 
-    function getCurrentlySelectedStadium(stadiumName: string): Stadium | undefined {
-        return stadiums.find((stadium) => stadium.name === stadiumName);
-    }
-
     async function loadCrimeDataForStadium({detail: stadium}: CustomEvent<Stadium | undefined>): Promise<CrimeData[]> {
-        if (stadium === undefined) {
+        if (!stadium) {
             crimeDataPromise = Promise.resolve([]);
+            return;
         }
 
         const locationService = new LocationService();
