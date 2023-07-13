@@ -57,6 +57,9 @@
 <style>
     .container {
         padding: 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
     }
 
     .stadium-selector__container {

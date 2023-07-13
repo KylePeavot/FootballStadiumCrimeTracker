@@ -9,6 +9,7 @@
 <style>
     :global(body) {
         font-family: 'Roboto', Arial, serif;
+        font-size: 16px;
     }
 
     .container {
