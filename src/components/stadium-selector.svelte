@@ -23,7 +23,7 @@
 
 </script>
 
-<input list="stadium-search-selector" bind:value={currentlySelectedStadiumName}/>
+<input list="stadium-search-selector" placeholder="Search for a stadium" bind:value={currentlySelectedStadiumName}/>
 
 <datalist id="stadium-search-selector">
     {#each stadiums as stadium}

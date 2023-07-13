@@ -40,11 +40,12 @@
     })
 </script>
 
-<article class="crime-data__container">
-    <h1>Check the safety of your stadium visit</h1>
+<article class="container">
+    <div class="stadium-selector__container">
+        <h1 class="crime-data__selector-title">Check the safety of your stadium visit</h1>
 
-
-    <StadiumSelector stadiums={stadiums} on:stadiumSelected={loadCrimeDataForStadium}/>
+        <StadiumSelector stadiums={stadiums} on:stadiumSelected={loadCrimeDataForStadium}/>
+    </div>
 
     {#await crimeDataPromise}
         Loading...
@@ -54,8 +55,20 @@
 </article>
 
 <style>
-    .crime-data__container {
+    .container {
         padding: 8px;
+    }
+
+    .stadium-selector__container {
+        background: #2563eb;
+        color: white;
+        padding: 8px;
+        border-radius: 8px;
+    }
+
+    .crime-data__selector-title {
+        font-weight: 500;
+        font-size: 32px;
     }
 
 </style>
