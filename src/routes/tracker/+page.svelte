@@ -8,25 +8,23 @@
 
     let stadiums: Stadium[] = [];
 
-    let currentlySelectedStadiumName = '';
-
     let crimeDataPromise: Promise<CrimeData[]> = Promise.resolve([]);
-
-    $: currentlySelectedStadium = getCurrentlySelectedStadium(currentlySelectedStadiumName);
 
     function getCurrentlySelectedStadium(stadiumName: string): Stadium | undefined {
         return stadiums.find((stadium) => stadium.name === stadiumName);
     }
 
-    async function loadCrimeDataForStadium({detail: stadium}: CustomEvent<Stadium>): Promise<CrimeData[]> {
+    async function loadCrimeDataForStadium({detail: stadium}: CustomEvent<Stadium | undefined>): Promise<CrimeData[]> {
+        if (stadium === undefined) {
+            crimeDataPromise = Promise.resolve([]);
+        }
+
         const locationService = new LocationService();
         const crimeDataService = new CrimeDataService();
 
-        const coordinatesForStadium = await locationService.getCoordinatesFromPostcode(stadium.postcode);
+        const coordinatesForStadium = await locationService.getCoordinatesFromPostcode(stadium!.postcode);
 
         if (!coordinatesForStadium) {
-            //TODO this is an error state
-
             return [];
         }
 

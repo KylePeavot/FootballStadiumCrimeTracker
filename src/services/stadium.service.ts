@@ -24,8 +24,6 @@ export class StadiumService {
     private readonly FOOTBALL_DATA_API_TOKEN = "f3898bd7f4c548b88bb666406691ecb7";
 
     async getAllStadiums(): Promise<Stadium[]> {
-        //TODO These aren't stadiums, they're teams
-        //TODO Add note explaining solutions to localhost:8100 situation
         const response = await axios.get<GetTeamsForCompetitionResponse>(
             `http://localhost:8010/proxy/v4/competitions/${this.COMPETITION_ID}/teams`,
             {
@@ -35,7 +33,6 @@ export class StadiumService {
             }
         );
 
-        //TODO error handling
         return StadiumService.buildStadiumsFromFootballDataResponse(response.data);
     }
 

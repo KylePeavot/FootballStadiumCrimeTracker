@@ -6,19 +6,22 @@
 
 </script>
 
-<table>
-    <tr>
-        <th>Type of crime</th>
-        <th>Date of crime</th>
-    </tr>
-    {#each crimeData as crimeDataItem}
+{#if crimeData.length}
+    <table>
         <tr>
-            <td>{crimeDataItem.prettyCategory}</td>
-            <td>{crimeDataItem.dateOfCrime}</td>
+            <th>Type of crime</th>
+            <th>Crime reported in</th>
         </tr>
-    {/each}
-</table>
-
+        {#each crimeData as crimeDataItem}
+            <tr>
+                <td>{crimeDataItem.prettyCategory}</td>
+                <td>{crimeDataItem.dateOfCrime.toLocaleDateString('en-GB', {year: 'numeric', month: 'long'})}</td>
+            </tr>
+        {/each}
+    </table>
+{:else}
+    <p>No crime data available for this stadium or no stadium has been selected</p>
+{/if}
 <style>
     table {
         text-align: left;

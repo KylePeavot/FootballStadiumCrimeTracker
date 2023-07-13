@@ -17,15 +17,11 @@ export type CrimeData = {
 
 export class CrimeDataService {
     async getCrimeDataForCoordinates({latitude, longitude}: Coordinates): Promise<CrimeData[]> {
-        //TODO Add comment to package.json describing necessity (CORS causing problem because of frontend only project, local proxy server required
-
             const response = await axios.get<GetCrimeDataForCoordinatesResponseItem[]>(
                 `http://localhost:8012/proxy/api/crimes-at-location?lat=${latitude}&lng=${longitude}`,
             );
 
             return CrimeDataService.buildCrimeDataFromResponse(response.data);
-
-            //TODO Error logging
     }
 
     static buildCrimeDataFromResponse(response: GetCrimeDataForCoordinatesResponseItem[]): CrimeData[] {
